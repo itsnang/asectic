@@ -32,7 +32,7 @@ export function HoodieCard({ name, price, image1, image2 }: HoodieCardProps) {
       <div className="p-4">
         <h3 className="text-lg font-semibold">{name}</h3>
         <p className="mb-4">${price.toFixed(2)}</p>
-        <Button className="w-full" variant="outline">
+        <Button className="w-full cursor-pointer" variant="outline">
           Buy Now
         </Button>
       </div>
