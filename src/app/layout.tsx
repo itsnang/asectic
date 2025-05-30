@@ -23,11 +23,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
+          {/* <Logo /> */}
+          fdsk
+        </div>
         {children}
+        <footer className="w-full py-6 px-4 bg-dark-600 text-gray-400">
+          <div className="container mx-auto text-center">
+            <p>&copy; 2023 SDFM 2520. All rights reserved.</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
