@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Navbar } from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,22 +26,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <ThemeToggle />
-          <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-            {/* <Logo /> */}
-            fdsk
-          </div>
+          <Navbar />
           {children}
           <footer className="w-full py-6 px-4 bg-background/80 backdrop-blur-sm border-t">
             <div className="container mx-auto text-center">
-              <p className="text-muted-foreground">&copy; 2024 SDFM 2520. All rights reserved.</p>
+              <p className="text-muted-foreground">
+                &copy; 2024 SDFM 2520. All rights reserved.
+              </p>
             </div>
           </footer>
         </ThemeProvider>

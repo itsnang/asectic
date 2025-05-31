@@ -1,57 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const images = [
   {
-    src: "https://64.media.tumblr.com/db8472cfbb89a155148003b053d5f3de/4d6d987e0cee7307-8e/s400x225/158142e8e876044a6191733a02f6ee5ac1643b58.gif",
-    isAnimated: true
+    src: "/7.jpg",
+    isAnimated: false,
   },
   {
-    src: "https://i.pinimg.com/originals/14/f4/35/14f435eaaf8d107cca5055ce150eaf47.gif",
-    isAnimated: true
-  }
-]
+    src: "/10.jpg",
+    isAnimated: false,
+  },
+];
 
 export function AutoSliderBanner() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-    }, 5000)
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   const handleShopClick = () => {
-    const productSection = document.getElementById("product-section")
+    const productSection = document.getElementById("product-section");
     if (productSection) {
-      productSection.scrollIntoView({ behavior: "smooth" })
+      productSection.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   const handleImageError = (index: number) => {
-    setError(`Failed to load image ${index + 1}`)
-    setIsLoading(false)
-  }
-
-  const handleImageLoad = () => {
-    setIsLoading(false)
-  }
+    setError(`Failed to load image ${index + 1}`);
+  };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-background">
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background">
-          <div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-        </div>
-      )}
-      
+    <div className="relative w-full h-[70vh] overflow-hidden bg-background">
       {error && (
         <div className="absolute inset-0 flex items-center justify-center bg-background text-destructive">
           {error}
@@ -74,20 +62,21 @@ export function AutoSliderBanner() {
             priority={index === 0}
             unoptimized={image.isAnimated}
             onError={() => handleImageError(index)}
-            onLoad={handleImageLoad}
             className="object-cover"
           />
         </div>
       ))}
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 dark:from-black/50 dark:via-black/30 dark:to-black/50 flex flex-col items-center justify-center z-20">
-        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white text-center mb-4 drop-shadow-lg">
+        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white text-center mb-3 drop-shadow-lg">
           Premium Streetwear
         </h1>
-        <p className="text-xl text-white/90 text-center mb-8 drop-shadow">Elevate Your Style</p>
-        <Button 
-          onClick={handleShopClick} 
-          size="lg" 
+        <p className="text-lg text-white/90 text-center mb-6 drop-shadow">
+          Elevate Your Style
+        </p>
+        <Button
+          onClick={handleShopClick}
+          size="lg"
           variant="outline"
           className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border-white/20 text-white hover:text-white"
         >
@@ -96,14 +85,14 @@ export function AutoSliderBanner() {
       </div>
 
       {/* Navigation Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex 
-                ? "bg-white w-4" 
+              index === currentIndex
+                ? "bg-white w-4"
                 : "bg-white/50 hover:bg-white/75"
             }`}
             aria-label={`Go to slide ${index + 1}`}
@@ -111,5 +100,5 @@ export function AutoSliderBanner() {
         ))}
       </div>
     </div>
-  )
+  );
 }
