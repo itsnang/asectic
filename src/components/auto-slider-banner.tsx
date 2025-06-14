@@ -94,7 +94,7 @@ export function AutoSliderBanner() {
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
   };
 
@@ -205,7 +205,7 @@ export function AutoSliderBanner() {
       {/* Navigation Arrows */}
       <motion.button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 text-white"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 text-white hidden md:block"
         aria-label="Previous slide"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -216,7 +216,7 @@ export function AutoSliderBanner() {
 
       <motion.button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 text-white"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 text-white hidden md:block"
         aria-label="Next slide"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
