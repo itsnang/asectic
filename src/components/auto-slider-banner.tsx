@@ -72,7 +72,7 @@ export function AutoSliderBanner() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 6000);
+    }, 9000);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
