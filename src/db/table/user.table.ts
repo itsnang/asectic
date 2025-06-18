@@ -8,6 +8,7 @@ export const TbUser = table("user", {
   email: column.text("email").notNull().unique(),
   emailVerified: column.boolean("email_verified").default(false),
   image: column.text("image"),
+  role: column.text("role").notNull().default("user"),
   createdAt: column.createdAt,
   updatedAt: column.updatedAt,
 });

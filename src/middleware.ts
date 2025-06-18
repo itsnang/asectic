@@ -3,7 +3,6 @@ import { getSessionCookie } from "better-auth/cookies";
 
 export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
-  console.log({ sessionCookie });
 
   if (!sessionCookie) {
     return NextResponse.redirect(new URL("/", request.url));
@@ -13,5 +12,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard"], // Specify the routes the middleware applies to
+  matcher: ["/dashboard"],
 };
