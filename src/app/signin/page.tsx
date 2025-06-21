@@ -35,10 +35,12 @@ export default function SigninPage() {
     onSubmit: async ({ value }) => {
       setIsLoading(true);
       try {
-        await signIn.email({
+        const res = await signIn.email({
           email: value.email,
           password: value.password,
         });
+
+        console.log("signin res", res);
 
         toast.success("Welcome back! 👋", {
           description: "You have successfully signed in to your account.",
