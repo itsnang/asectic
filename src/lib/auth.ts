@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { createDB, createDBClient } from "@/lib/init-db";
 import { env } from "@/lib/env";
 import { TbUser, TbSession, TbAccount, TbVerification } from "@/db/table";
-import { sendPasswordResetEmail } from "@/lib/email";
+import { sendPasswordResetEmail, sendEmailVerification } from "@/lib/email";
 
 const client = createDBClient({
   url: env.DATABASE_URL,
@@ -47,8 +47,23 @@ export const auth = betterAuth({
   },
   emailVerification: {
     enabled: true,
-    sendVerificationEmail: async ({ user, url, token }, request) => {
-      console.log("sendVerificationEmail", { user, url, token, request });
+    sendVerificationEmail: async ({ user, url }) => {
+      if (env.RESEND_API_KEY) {
+        try {
+          await sendEmailVerification({
+            to: user.email,
+            verificationUrl: url,
+            userName: user.name || "there",
+          });
+          console.log("Email verification sent successfully to:", user.email);
+        } catch (error) {
+          console.error("Failed to send email verification:", error);
+          console.log("Verification URL (fallback):", url);
+        }
+      } else {
+        console.log("RESEND_API_KEY not configured. Verification URL:", url);
+        console.log("Visit this URL to verify email for:", user.email);
+      }
     },
   },
   secret: env.BETTER_AUTH_SECRET,
