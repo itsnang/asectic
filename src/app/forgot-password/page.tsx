@@ -32,17 +32,29 @@ export default function ForgotPasswordPage() {
     onSubmit: async ({ value }) => {
       setIsLoading(true);
       try {
-        await forgetPassword({
-          email: value.email,
-          redirectTo: "/reset-password",
-        });
+        await forgetPassword(
+          {
+            email: value.email,
+            redirectTo: "/reset-password",
+          },
+          {
+            onError: (ctx) => {
+              toast.error("Failed to send reset email", {
+                description: ctx.error.message,
+                duration: 4000,
+              });
+            },
+            onSuccess: () => {
+              toast.success("Password reset email sent! 📧", {
+                description:
+                  "Check your email for instructions to reset your password.",
+                duration: 5000,
+              });
+            },
+          },
+        );
 
         setEmailSent(true);
-        toast.success("Password reset email sent! 📧", {
-          description:
-            "Check your email for instructions to reset your password.",
-          duration: 5000,
-        });
       } catch (error) {
         console.error("Forgot password error:", error);
         toast.error("Failed to send reset email", {

@@ -13,9 +13,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 interface ResetPasswordFormData {
   password: string;
@@ -25,7 +25,6 @@ interface ResetPasswordFormData {
 export default function ResetPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { resetPassword } = authClient;
 
@@ -57,20 +56,26 @@ export default function ResetPasswordPage() {
 
       setIsLoading(true);
       try {
-        await resetPassword({
-          token: token,
-          newPassword: value.password,
-        });
-
-        toast.success("Password reset successfully! 🎉", {
-          description: "You can now sign in with your new password.",
-          duration: 4000,
-        });
-
-        // Redirect to signin page after successful reset
-        setTimeout(() => {
-          router.push("/signin");
-        }, 2000);
+        await resetPassword(
+          {
+            token: token,
+            newPassword: value.password,
+          },
+          {
+            onError: (ctx) => {
+              toast.error("Failed to reset password", {
+                description: ctx.error.message,
+                duration: 4000,
+              });
+            },
+            onSuccess: () => {
+              toast.success("Password reset successfully! 🎉", {
+                description: "You can now sign in with your new password.",
+                duration: 4000,
+              });
+            },
+          },
+        );
       } catch (error) {
         console.error("Reset password error:", error);
         toast.error("Failed to reset password", {

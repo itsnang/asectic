@@ -13,7 +13,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 
@@ -26,7 +25,6 @@ interface SignupFormData {
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const { signUp } = authClient;
 
   const form = useForm({
@@ -39,21 +37,30 @@ export default function SignupPage() {
     onSubmit: async ({ value }) => {
       setIsLoading(true);
       try {
-        await signUp.email({
-          email: value.email,
-          password: value.password,
-          name: value.name,
-        });
-
-        toast.success("Account created successfully! Welcome aboard! 🎉", {
-          description: "You can now start exploring our products.",
-          duration: 4000,
-        });
-
-        // Redirect to dashboard or home page after successful signup
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1500);
+        await signUp.email(
+          {
+            email: value.email,
+            password: value.password,
+            name: value.name,
+          },
+          {
+            onError: (ctx) => {
+              toast.error("Failed to create account", {
+                description: ctx.error.message,
+                duration: 4000,
+              });
+            },
+            onSuccess: () => {
+              toast.success(
+                "Account created successfully! Welcome aboard! 🎉",
+                {
+                  description: "You can now start exploring our products.",
+                  duration: 4000,
+                },
+              );
+            },
+          },
+        );
       } catch (error) {
         console.error("Signup error:", error);
         toast.error("Failed to create account", {

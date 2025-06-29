@@ -13,7 +13,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 
@@ -24,7 +23,6 @@ interface SigninFormData {
 
 export default function SigninPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const { signIn } = authClient;
 
   const form = useForm({
@@ -35,22 +33,27 @@ export default function SigninPage() {
     onSubmit: async ({ value }) => {
       setIsLoading(true);
       try {
-        const res = await signIn.email({
-          email: value.email,
-          password: value.password,
-        });
-
-        console.log("signin res", res);
-
-        toast.success("Welcome back! 👋", {
-          description: "You have successfully signed in to your account.",
-          duration: 3000,
-        });
-
-        // Redirect to dashboard or home page after successful signin
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1000);
+        await signIn.email(
+          {
+            email: value.email,
+            password: value.password,
+            callbackURL: "/dashboard",
+          },
+          {
+            onError: (ctx) => {
+              toast.error("Failed to sign in", {
+                description: ctx.error.message,
+                duration: 4000,
+              });
+            },
+            onSuccess: () => {
+              toast.success("Welcome back! 👋", {
+                description: "You have successfully signed in to your account.",
+                duration: 3000,
+              });
+            },
+          },
+        );
       } catch (error) {
         console.error("Signin error:", error);
         toast.error("Failed to sign in", {

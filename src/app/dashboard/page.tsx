@@ -20,27 +20,23 @@ export default function DashboardPage() {
 
   const handleSignOut = async () => {
     setIsSigningOut(true);
-    try {
-      await signOut();
-
-      toast.success("Signed out successfully! 👋", {
-        description: "See you next time!",
-        duration: 3000,
-      });
-
-      // Redirect to home page after successful signout
-      setTimeout(() => {
-        router.push("/");
-      }, 1000);
-    } catch (error) {
-      console.error("Signout error:", error);
-      toast.error("Failed to sign out", {
-        description: "Please try again.",
-        duration: 3000,
-      });
-    } finally {
-      setIsSigningOut(false);
-    }
+    await signOut({
+      fetchOptions: {
+        onError: (ctx) => {
+          toast.error("Failed to sign out", {
+            description: ctx.error.message,
+            duration: 3000,
+          });
+        },
+        onSuccess: () => {
+          toast.success("Signed out successfully! 👋", {
+            description: "See you next time!",
+            duration: 3000,
+          });
+          router.push("/");
+        },
+      },
+    });
   };
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
