@@ -37,11 +37,13 @@ export const auth = betterAuth({
           console.error("Failed to send password reset email:", error);
           // Fallback: log the URL for development
           console.log("Reset URL (fallback):", url);
+          throw new Error("Failed to send password reset email");
         }
       } else {
         // Development fallback - log the reset URL
         console.log("RESEND_API_KEY not configured. Reset URL:", url);
         console.log("Visit this URL to reset password for:", user.email);
+        throw new Error("Failed to send password reset email");
       }
     },
   },
