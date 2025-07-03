@@ -145,7 +145,7 @@ export default function Home() {
             <AnimatedText
               scale
               duration={0.8}
-              className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent"
+              className="text-4xl font-bold mb-4 text-gradient-brand"
             >
               Latest Collection
             </AnimatedText>
@@ -219,10 +219,12 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="w-full py-20 bg-gradient-to-r from-primary/5 to-primary/10">
+      <section className="w-full py-20 bg-gradient-to-br from-primary/10 via-brand/5 to-primary/5">
         <div className="container mx-auto px-4 text-center">
           <FadeIn>
-            <h2 className="text-4xl font-bold mb-4">Stay Updated</h2>
+            <h2 className="text-4xl font-bold mb-4 text-gradient-brand">
+              Stay Updated
+            </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Subscribe to our newsletter and be the first to know about new
               collections, exclusive offers, and style tips.
@@ -231,10 +233,13 @@ export default function Home() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 px-4 py-3 rounded-lg border bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-all"
               />
               <ScaleOnHover whileTap tapScale={0.95}>
-                <Button size="lg" className="px-8">
+                <Button
+                  size="lg"
+                  className="px-8 bg-gradient-brand hover:opacity-90 border-0"
+                >
                   Subscribe
                 </Button>
               </ScaleOnHover>

@@ -183,7 +183,7 @@ export function AutoSliderBanner() {
               <Button
                 onClick={handleShopClick}
                 size="lg"
-                className="bg-white text-black hover:bg-white/90 font-semibold px-8 py-3 rounded-full shadow-xl"
+                className="bg-gradient-brand text-white hover:opacity-90 font-semibold px-8 py-3 rounded-full shadow-xl border-0"
               >
                 SHOP NOW
               </Button>
@@ -193,7 +193,7 @@ export function AutoSliderBanner() {
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-transparent border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-3 rounded-full"
+                className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm px-8 py-3 rounded-full transition-all duration-300"
               >
                 Learn More
               </Button>

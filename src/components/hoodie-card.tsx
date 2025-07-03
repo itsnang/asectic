@@ -65,12 +65,12 @@ export function HoodieCard({
           <motion.div
             className={`absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-semibold ${
               badge === "Popular"
-                ? "bg-blue-500 text-white"
+                ? "bg-gradient-brand text-white shadow-lg"
                 : badge === "New"
-                  ? "bg-green-500 text-white"
+                  ? "bg-success text-success-foreground shadow-lg"
                   : badge === "Limited"
-                    ? "bg-red-500 text-white"
-                    : "bg-gray-500 text-white"
+                    ? "bg-destructive text-white shadow-lg"
+                    : "bg-muted text-muted-foreground"
             }`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -141,7 +141,7 @@ export function HoodieCard({
       {/* Content */}
       <div className="p-5">
         <motion.h3
-          className="text-lg font-semibold mb-2 group-hover:text-primary"
+          className="text-lg font-semibold mb-2 group-hover:text-brand transition-all duration-300"
           whileHover={{ x: 4 }}
           transition={{ duration: 0.2 }}
         >
