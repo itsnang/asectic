@@ -1,0 +1,113 @@
+{
+  "plugins": [
+    "react",
+    "react-hooks",
+    "typescript",
+    "oxc",
+    "import"
+  ],
+  "env": {
+    "browser": true,
+    "es2024": true,
+    "node": true
+  },
+  "globals": {
+    "React": "readonly",
+    "JSX": "readonly"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "next": {
+      "rootDir": "./"
+    }
+  },
+  "rules": {
+    "typescript/no-unused-vars": "error",
+    "typescript/no-explicit-any": "warn",
+    "typescript/prefer-as-const": "error",
+    "typescript/consistent-type-imports": "error",
+    "react/jsx-key": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-undef": "error",
+    "react/jsx-uses-vars": "error",
+    "react/no-children-prop": "error",
+    "react/no-danger-with-children": "error",
+    "react/no-deprecated": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/no-find-dom-node": "error",
+    "react/no-render-return-value": "error",
+    "react/no-string-refs": "error",
+    "react/no-unescaped-entities": "error",
+    "react/no-unknown-property": "error",
+    "react/require-render-return": "error",
+    "react/self-closing-comp": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/no-duplicates": "error",
+    "import/no-self-import": "error",
+    "import/no-cycle": "error",
+    "no-unused-vars": "error",
+    "no-undef": "error",
+    "no-console": "warn",
+    "no-debugger": "error",
+    "prefer-const": "error",
+    "no-var": "error",
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "no-duplicate-imports": "error",
+    "no-unreachable": "error",
+    "prefer-template": "error",
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      }
+    ],
+    "array-callback-return": "error",
+    "no-implicit-coercion": "error",
+    "no-magic-numbers": [
+      "warn",
+      {
+        "ignore": [
+          0,
+          1,
+          -1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          404
+        ],
+        "ignoreArrayIndexes": true,
+        "ignoreDefaultValues": true
+      }
+    ],
+    "no-param-reassign": "error",
+    "no-return-assign": "error",
+    "no-sequences": "error",
+    "no-throw-literal": "error",
+    "no-unused-expressions": "error",
+    "no-useless-call": "error",
+    "no-useless-concat": "error",
+    "no-useless-return": "error"
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "out/",
+    "build/",
+    "dist/",
+    "*.min.js",
+    "*.d.ts",
+    "coverage/",
+    ".turbo/",
+    "migrations/",
+    "public/"
+  ]
+}
