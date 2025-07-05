@@ -4,17 +4,8 @@ import { nanoid } from "nanoid";
 // Configure logger based on environment
 const baseLogger = pino({
   level: process.env.NODE_ENV === "production" ? "info" : "debug",
-  transport:
-    process.env.NODE_ENV === "development"
-      ? {
-          target: "pino-pretty",
-          options: {
-            colorize: true,
-            ignore: "pid,hostname",
-            translateTime: "SYS:standard",
-          },
-        }
-      : undefined,
+  // Disable pino-pretty transport to avoid worker script issues in Next.js
+  // Use simple JSON logging instead
   base: {
     env: process.env.NODE_ENV,
     revision:
