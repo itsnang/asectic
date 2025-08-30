@@ -1,4 +1,4 @@
-# .claude ui-component.md
+# ui-component.md
 
 This file provides guidance for UI component development and patterns in this streetwear e-commerce application.
 
@@ -7,6 +7,7 @@ This file provides guidance for UI component development and patterns in this st
 ### Design System Foundation
 
 **Shadcn/ui Configuration:**
+
 - Style: "new-york" variant with modern aesthetics
 - Base color: Gray with CSS variables for theming
 - Icon library: Lucide React
@@ -16,12 +17,14 @@ This file provides guidance for UI component development and patterns in this st
 ### Theme System
 
 **Dark/Light Mode:**
+
 - `next-themes` integration with system preference detection
 - CSS variables defined in `globals.css` with `@theme inline` directive
 - Custom dark variant: `@custom-variant dark (&:is(.dark *))`
 - Automatic theme switching without flash
 
 **Color Tokens:**
+
 - Primary system: `--color-primary`, `--color-primary-foreground`
 - Semantic colors: `success`, `warning`, `info`, `brand`
 - Extended palette: Chart colors (1-5), Sidebar colors
@@ -32,6 +35,7 @@ This file provides guidance for UI component development and patterns in this st
 ### Base UI Components (shadcn/ui)
 
 **Button Component:**
+
 - Uses `class-variance-authority` for variants
 - Supports `asChild` prop via Radix Slot for polymorphic behavior
 - Variants: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`
@@ -40,6 +44,7 @@ This file provides guidance for UI component development and patterns in this st
 - Error states: `aria-invalid:ring-destructive/20`
 
 **Card Component:**
+
 - Compound component pattern with semantic slots
 - Components: `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent`, `CardFooter`
 - Grid-based header with automatic action positioning
@@ -52,6 +57,7 @@ This file provides guidance for UI component development and patterns in this st
 Location: `src/components/animations/`
 
 **Core Animations:**
+
 - `FadeIn`: Directional fade with viewport intersection
 - `BlurFade`: Blur + fade combination
 - `StaggerContainer` + `StaggerItem`: Sequential animations
@@ -59,6 +65,7 @@ Location: `src/components/animations/`
 - `AnimatedText`: Text reveal animations
 
 **FadeIn Pattern:**
+
 ```tsx
 <FadeIn direction="up" delay={0.2} duration={0.6}>
   <Component />
@@ -66,6 +73,7 @@ Location: `src/components/animations/`
 ```
 
 **Animation Philosophy:**
+
 - Viewport-based animations with `whileInView`
 - Easing: `ease: "easeOut"` for natural motion
 - Spring animations: `type: "spring", stiffness: 200`
@@ -74,6 +82,7 @@ Location: `src/components/animations/`
 ### Complex Component Example: HoodieCard
 
 **Features Implemented:**
+
 - Image crossfade on hover with AnimatePresence
 - Micro-interactions: Heart animation, button scaling
 - Dynamic badges with conditional styling
@@ -82,6 +91,7 @@ Location: `src/components/animations/`
 - Hover state management with Framer Motion
 
 **Interaction Patterns:**
+
 - `whileHover`, `whileTap` for immediate feedback
 - Staggered animations for lists (ratings stars)
 - Complex state-dependent animations (liked heart)
@@ -92,11 +102,13 @@ Location: `src/components/animations/`
 ### Naming Conventions
 
 **Files:**
+
 - UI components: `kebab-case` (e.g., `hoodie-card.tsx`)
 - Animation components: `kebab-case` (e.g., `fade-in.tsx`)
 - Base components: `PascalCase` exports
 
 **Component Structure:**
+
 ```tsx
 interface ComponentProps {
   // Props with clear documentation
@@ -110,6 +122,7 @@ export function Component({ ...props }: ComponentProps) {
 ### Styling Patterns
 
 **Class Organization:**
+
 1. Layout classes first
 2. Responsive modifiers
 3. State modifiers (hover, focus, etc.)
@@ -117,6 +130,7 @@ export function Component({ ...props }: ComponentProps) {
 5. Animation classes last
 
 **CSS Variable Usage:**
+
 - Use semantic tokens: `text-foreground`, `bg-background`
 - Custom properties: `--color-brand` for extended palette
 - Gradient patterns: `from-primary/5 via-transparent to-brand/5`
@@ -124,12 +138,14 @@ export function Component({ ...props }: ComponentProps) {
 ### Animation Standards
 
 **Motion Values:**
+
 - Duration: `0.6s` for primary animations, `0.2-0.4s` for micro-interactions
 - Easing: `[0.22, 1, 0.36, 1]` cubic-bezier for smooth motion
 - Delays: Stagger by `0.05-0.1s` intervals
 - Scale: `1.02-1.05` for hover, `0.95-0.98` for active
 
 **Performance:**
+
 - Use `transform` properties for animations
 - Prefer `opacity` and `scale` over layout changes
 - `will-change` only when necessary
@@ -138,11 +154,13 @@ export function Component({ ...props }: ComponentProps) {
 ## Integration with Forms
 
 **Form Libraries:**
+
 - React Hook Form + Zod validation
 - TanStack Form for complex forms
 - shadcn/ui form components with error handling
 
 **Validation Patterns:**
+
 - Schema-first with Zod
 - Real-time validation feedback
 - Error states with semantic colors
