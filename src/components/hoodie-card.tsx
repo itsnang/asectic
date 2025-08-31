@@ -55,11 +55,11 @@ export function HoodieCard({
   const getBadgeColor = (badgeType: string) => {
     switch (badgeType) {
       case "Popular":
-        return "bg-gradient-to-r from-orange-500 to-red-500 text-white";
+        return "bg-gradient-to-r from-orange-500 to-red-500 text-white dark:text-white";
       case "New":
-        return "bg-gradient-to-r from-green-500 to-emerald-500 text-white";
+        return "bg-gradient-to-r from-green-500 to-emerald-500 text-white dark:text-white";
       case "Limited":
-        return "bg-gradient-to-r from-purple-500 to-pink-500 text-white";
+        return "bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:text-white";
       default:
         return "bg-muted text-muted-foreground";
     }
@@ -133,7 +133,7 @@ export function HoodieCard({
           {/* Discount Badge */}
           {discountPercentage > 0 && (
             <motion.div
-              className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg"
+              className="bg-gradient-to-r from-red-500 to-pink-600 text-white dark:text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg"
               initial={{ opacity: 0, scale: 0.8, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 200 }}

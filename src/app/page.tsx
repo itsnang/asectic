@@ -187,7 +187,7 @@ export default function Home() {
                   <div
                     className={`mx-auto w-20 h-20 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <feature.icon className="w-10 h-10 text-white" />
+                    <feature.icon className="w-10 h-10 text-white dark:text-white" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
                     {feature.title}
@@ -336,7 +336,7 @@ export default function Home() {
             </BlurFade>
 
             <BlurFade delay={0.4} className="max-w-lg mx-auto">
-              <div className="flex flex-col sm:flex-row gap-4 p-2 bg-white/80 backdrop-blur-sm rounded-2xl border border-border/50">
+              <div className="flex flex-col sm:flex-row gap-4 p-2 bg-background/80 dark:bg-background/80 backdrop-blur-sm rounded-2xl border border-border/50">
                 <input
                   type="email"
                   placeholder="Enter your email address"

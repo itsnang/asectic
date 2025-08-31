@@ -156,18 +156,18 @@ export function AutoSliderBanner() {
         >
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/20 dark:border-white/20 rounded-full px-4 py-2 mb-6"
             variants={badgeVariants}
           >
             <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            <span className="text-white/90 text-sm font-medium">
+            <span className="text-white/90 dark:text-white/90 text-sm font-medium">
               {images[currentIndex].badge}
             </span>
           </motion.div>
 
           {/* Title */}
           <motion.h1
-            className="text-6xl md:text-8xl font-bold tracking-tight text-white mb-6 drop-shadow-2xl"
+            className="text-6xl md:text-8xl font-bold tracking-tight text-white dark:text-white mb-6 drop-shadow-2xl"
             variants={contentVariants}
             transition={{ duration: 1.5, ease: "easeOut" as const }}
           >
@@ -178,7 +178,7 @@ export function AutoSliderBanner() {
 
           {/* Subtitle */}
           <motion.p
-            className="text-2xl md:text-3xl text-white/90 mb-4 font-light tracking-wide"
+            className="text-2xl md:text-3xl text-white/90 dark:text-white/90 mb-4 font-light tracking-wide"
             variants={contentVariants}
             transition={{ duration: 1.5, ease: "easeOut" as const }}
           >
@@ -187,7 +187,7 @@ export function AutoSliderBanner() {
 
           {/* Description */}
           <motion.p
-            className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-white/80 dark:text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed"
             variants={contentVariants}
             transition={{ duration: 1.5, ease: "easeOut" as const }}
           >
@@ -203,13 +203,13 @@ export function AutoSliderBanner() {
             {images[currentIndex].features.map((feature, index) => (
               <motion.div
                 key={feature}
-                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2"
+                className="flex items-center gap-2 bg-white/10 dark:bg-white/10 backdrop-blur-sm border border-white/20 dark:border-white/20 rounded-full px-4 py-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2 + index * 0.2, duration: 0.8 }}
               >
                 <div className="w-2 h-2 bg-gradient-brand rounded-full" />
-                <span className="text-white/90 text-sm font-medium">
+                <span className="text-white/90 dark:text-white/90 text-sm font-medium">
                   {feature}
                 </span>
               </motion.div>
@@ -230,7 +230,7 @@ export function AutoSliderBanner() {
               <Button
                 onClick={handleShopClick}
                 size="lg"
-                className="bg-gradient-brand text-white hover:opacity-90 font-semibold px-10 py-4 rounded-full shadow-2xl border-0 text-lg relative overflow-hidden"
+                className="bg-gradient-brand text-white dark:text-white hover:opacity-90 font-semibold px-10 py-4 rounded-full shadow-2xl border-0 text-lg relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   {images[currentIndex].cta}
@@ -253,7 +253,7 @@ export function AutoSliderBanner() {
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-10 py-4 rounded-full transition-all duration-300 text-lg"
+                className="bg-white/10 dark:bg-white/10 backdrop-blur-md border-white/30 dark:border-white/30 text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/20 hover:border-white/50 dark:hover:border-white/50 px-10 py-4 rounded-full transition-all duration-300 text-lg"
               >
                 <Play className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
                 {images[currentIndex].secondaryCta}
@@ -273,8 +273,8 @@ export function AutoSliderBanner() {
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "bg-white scale-125"
-                  : "bg-white/50 hover:bg-white/75"
+                  ? "bg-white dark:bg-white scale-125"
+                  : "bg-white/50 dark:bg-white/50 hover:bg-white/75 dark:hover:bg-white/75"
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
@@ -285,14 +285,14 @@ export function AutoSliderBanner() {
         {/* Play/Pause Button */}
         <motion.button
           onClick={() => setIsPlaying(!isPlaying)}
-          className="ml-4 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 text-white"
+          className="ml-4 p-2 rounded-full bg-white/20 dark:bg-white/20 hover:bg-white/30 dark:hover:bg-white/30 backdrop-blur-sm border border-white/20 dark:border-white/20 text-white dark:text-white"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
           {isPlaying ? (
             <div className="w-4 h-4 flex gap-1">
-              <div className="w-1 h-4 bg-white rounded-full" />
-              <div className="w-1 h-4 bg-white rounded-full" />
+              <div className="w-1 h-4 bg-white dark:bg-white rounded-full" />
+              <div className="w-1 h-4 bg-white dark:bg-white rounded-full" />
             </div>
           ) : (
             <Play className="w-4 h-4 fill-white" />
@@ -303,7 +303,7 @@ export function AutoSliderBanner() {
       {/* Side Navigation Arrows */}
       <motion.button
         onClick={goToPrevious}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white hidden lg:block"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/10 dark:bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 backdrop-blur-md border border-white/20 dark:border-white/20 text-white dark:text-white hidden lg:block"
         whileHover={{ scale: 1.1, x: -2 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -312,7 +312,7 @@ export function AutoSliderBanner() {
 
       <motion.button
         onClick={goToNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white hidden lg:block"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/10 dark:bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 backdrop-blur-md border border-white/20 dark:border-white/20 text-white dark:text-white hidden lg:block"
         whileHover={{ scale: 1.1, x: 2 }}
         whileTap={{ scale: 0.9 }}
       >

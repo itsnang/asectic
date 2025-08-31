@@ -6,7 +6,7 @@ export const Icons = {
   globe: (props: IconProps) => <GlobeIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   certificate: (props: IconProps) => (
-    <FileBadge2 {...props} className="h-4 w-4 text-gray-900" />
+    <FileBadge2 {...props} className="h-4 w-4 text-foreground" />
   ),
   linkedin: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
