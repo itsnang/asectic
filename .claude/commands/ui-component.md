@@ -2,6 +2,13 @@
 
 This file provides guidance for UI component development and patterns in this streetwear e-commerce application.
 
+## Context
+
+Parse $ARGUMENTS to get the following values:
+
+- [name]: Component file name from $ARGUMENTS, converted to kebab-case (e.g. user-profile.tsx) and Component name from $ARGUMENTS, converted to PascalCase.
+- [summary]: Component summary from $ARGUMENTS
+
 ## Component Architecture
 
 ### Design System Foundation
