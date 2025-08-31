@@ -100,3 +100,4 @@ Use structured logging from `src/lib/logger.ts`:
 - Tailwind CSS with custom design system
 - Zod for runtime validation
 - File naming: kebab-case for components, camelCase for utilities
+- Use Context7 to check up-to-date docs when needed for implmenting new libraries or framworks, or adding features using them.
